@@ -1,0 +1,10 @@
+.env
+venv
+.vscode
+**/__pycache__
+**/.pytest_cache
+.env
+venv
+.vscode
+**/__pycache__
+**/.pytest_cache
