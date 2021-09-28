@@ -1,5 +1,6 @@
 import { useState } from "react";
 import InputContainer from "./styles";
+import Button from '../button/index'
 
 const InputFile = () => {
   const [files, setFiles] = useState();
@@ -21,13 +22,13 @@ const InputFile = () => {
     setPreview(objectToArray(e.target.files));
   };
 
-  const teste = () => {
-    console.log(files);
-  };
+  // const teste = () => {
+  //   console.log(files);
+  // };
 
   return (
     <InputContainer>
-      <button onClick={teste}>teste</button>
+      {/* <button onClick={teste}>teste</button> */}
       <form>
         <input
           type="file"
@@ -35,6 +36,11 @@ const InputFile = () => {
           multiple
           onChange={handleUploadFiles}
         />
+        <Button
+          setBackground="var(--orange)"
+          setColor="white"
+        
+        >Enviar</Button>
       </form>
       <div className="previewContainer">
         {preview &&

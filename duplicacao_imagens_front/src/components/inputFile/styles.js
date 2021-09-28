@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const InputContainer = styled.div`
   width: 100%;
-  height: fit-content;
+  height: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,9 +10,14 @@ const InputContainer = styled.div`
 
   border: 4px solid var(--blue);
 
+  form{
+    display: flex;
+    align-items: center;
   input {
     border: 1px solid var(--blue);
-  }
+    height: fit-content;
+
+  }}
 
   .previewContainer {
     display: flex;
@@ -21,8 +26,8 @@ const InputContainer = styled.div`
 
     figure {
         margin: 5px;
-        overflow-x: auto;
-        height: 120px;
+        overflow-y: auto;
+        height: 200px;
         
       img {
         border: 2px solid black;
