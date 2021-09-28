@@ -1,6 +1,17 @@
 # import pymongo
 
 
+image_await_aproval = []
+
+
+def set_in_line(object_image):
+    image_await_aproval.append(object_image)
+
+def pop_from_line(object_image):
+    image_await_aproval.pop(object_image)
+
+
+
 # client = pymongo.MongoClient("mongodb://localhost:27018/")
 # db = client["hapvida"]
 
