@@ -118,7 +118,12 @@ def home_view(app: Flask):
     @app.get("/images/approval")
     def get_all_in_line():
 
-        all_files = ApproveModel.objects().all()        
+        
+        all_files = ApproveModel.objects().all()      
+
+
+        if len(all_files) == 0:
+            return jsonify({'msg' : 'There are no images in line for approval'}), 404
 
         result = [{
             'imageId' : file.imageId,
@@ -126,7 +131,7 @@ def home_view(app: Flask):
             'hash': file.hash, 'date': file.creation_date,
             'image': f'{configs["baseURL"]}/images/{file.imageId}'
         } for file in all_files]
-               
+  
 
         return jsonify(result) ,200
     
