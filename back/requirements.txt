@@ -2,12 +2,14 @@ attrs==21.2.0
 click==8.0.1
 Flask==2.0.1
 Flask-PyMongo==2.3.0
+ImageHash==4.2.1
 iniconfig==1.1.1
 itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
 marshmallow==3.13.0
 mongoengine==0.23.1
+numpy==1.21.2
 packaging==21.0
 Pillow==8.3.2
 pluggy==1.0.0
@@ -16,5 +18,8 @@ pymongo==3.12.0
 pyparsing==2.4.7
 pytest==6.2.5
 python-dotenv==0.19.0
+PyWavelets==1.1.1
+scipy==1.7.1
+six==1.16.0
 toml==0.10.2
 Werkzeug==2.0.1

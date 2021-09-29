@@ -5,12 +5,10 @@ from mongoengine import Document, fields
 load_dotenv()
 
 configs={
-    'db' : os.getenv('DB'),
-    'host': os.getenv('DB_HOST'),
     'collection' :  os.getenv('COLLECTION_APPROVAL_LINE')
 }
 
-class AproveModel(Document):
+class ApproveModel(Document):
     meta = {"collection" : configs['collection']}
 
     imageId = fields.StringField(required=True)
