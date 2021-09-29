@@ -5,43 +5,42 @@ const HashContext = createContext([]);
 
 export const HashProvider = ({ children }) => {
 
-    // const [hash,setHash]= useState("")
 
-
-    const getHash = ()=>{
+    const getHash = (files)=>{
 
         let imageHash = ""
 
-        const FormData = require('form-data');
-        // const fs = require('fs');
-
-        // const formData = new FormData();
-        // formData.append('image', new Blob([file]));
-  
-
-
-
-
-        // console.log(`.......${files}`)
-
-
-        // const config = {
-        //     headers: { 'Content-Type': 'multipart/form-data'
-        // }
-        // }
+        const formData = new FormData();
         
 
-        api.get(`/info`).then((res)=>{
-        console.log(`AQUI >>>>> ${res.data}`)}
-        )
+        console.log(files[0].name.split('.')[0])
 
 
-        // await api.post(`/generate-hash-mock`, formData, config).then((res)=>{
-        //     imageHash = res.data.image_hash
+        for (let i = 0; i < files.length;i++ ){
+        
+            formData.append(files[i].name, files[i]);
+        }
 
-        //     // console.log(res.data.image_hash)
+        const config = {
+            headers: { 'content-type': 'multipart/form-data'
+        }
+        }
 
+        // api.get('/info').then((res)=>{
+        //     console.log(res.data["msg"])
         // })
+
+        //     api.post('/info/1').then((res)=>{
+        //     console.log(res.data["msg"])
+        // })
+        
+
+        api.post(`/generate-hash-mock`, formData, config).then((res)=>{
+            imageHash = res.data['image_hash']
+
+            console.log(`>>>>>${res.data.image_hash}`)
+
+        })
 
         return imageHash
 

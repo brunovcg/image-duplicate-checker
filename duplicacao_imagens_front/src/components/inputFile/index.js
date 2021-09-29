@@ -29,10 +29,10 @@ const InputFile = () => {
   };
 
 
-  const teste = () => {
-    getHash()
-  // console.log("teste")
-  }
+  // const teste = () => {
+  //   getHash(files)
+  // // console.log("teste")
+  // }
 
 
 
@@ -49,7 +49,7 @@ const InputFile = () => {
         <Button
           setBackground="var(--orange)"
           setColor="white"
-          setClick={teste}
+          setClick={()=>getHash(files)}
         
         >Enviar</Button>
       </div>
