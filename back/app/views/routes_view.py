@@ -7,18 +7,27 @@ import uuid
 from datetime import datetime
 from mongoengine import connect
 from app.controllers.image_hash_mock import generate_mocked_hash
+from flask_cors import cross_origin, CORS
+import json
 
 load_dotenv()
 
 configs={
     'baseURL' : os.getenv('APP_HOST_ADDRESS'),
     'db' : os.getenv('DB'),
-    'host': os.getenv('DB_HOST')
+    'host': os.getenv('DB_HOST'),
+    'origins': json.loads(os.getenv('CORS_ORIGINS'))
 }
+
 
 connect(db=configs['db'], host=configs['host'])
 
 def home_view(app: Flask):
+
+    CORS(app, resources={
+        r"/images/*": {"origins": configs['origins']}
+    })
+
 
     @app.post("/images")
     def create():
@@ -29,8 +38,8 @@ def home_view(app: Flask):
 
         uploaded_to_db = []
         need_approval = []
-   
-        for index, file in enumerate(data_file_names):   
+
+        for index, file in enumerate(data_file_names):
 
             image_hash = ImageModel.getHash(file)
 
@@ -47,7 +56,7 @@ def home_view(app: Flask):
             except Exception:
                 exists = False
 
-            if not exists:    
+            if not exists:
                 item = ImageModel(
                     imageId = image_id,
                     packageName = data_file_names[index],
@@ -60,8 +69,8 @@ def home_view(app: Flask):
 
                 uploaded_to_db.append({'filename' : file_extension, 'image_id': image_id})
 
-                item.save() 
-           
+                item.save()
+
             if exists:
                 item = ApproveModel(
                     imageId = image_id,
@@ -75,7 +84,7 @@ def home_view(app: Flask):
 
                 need_approval.append({'filename' : file_extension, 'image_id': image_id})
 
-                item.save() 
+                item.save()
 
 
         return jsonify({'uploaded_to_db': uploaded_to_db, 'need_approval' : need_approval}), 201
@@ -87,7 +96,7 @@ def home_view(app: Flask):
             get_file = ApproveModel.objects().get(imageId = image_Id)
 
             ApproveModel.objects(imageId = image_Id).delete()
-            
+
             item = ImageModel(
                 imageId = get_file['imageId'],
                 packageName = get_file['packageName'],
@@ -97,7 +106,7 @@ def home_view(app: Flask):
                 extension = get_file['extension'],
                 creation_date = get_file['creation_date']
                 )
-            
+
             item.save()
             return jsonify({'msg' : "Item saved on database"}), 200
 
@@ -121,7 +130,7 @@ def home_view(app: Flask):
     @app.get("/images")
     def get_all():
 
-        all_files = ImageModel.objects().all()        
+        all_files = ImageModel.objects().all()
 
         result = [{
             'imageId' : file.imageId,
@@ -129,13 +138,13 @@ def home_view(app: Flask):
             'hash': file.hash, 'date': file.creation_date,
             'image': f'{configs["baseURL"]}/images/{file.imageId}'
         } for file in all_files]
-               
+
         return jsonify(result) ,200
 
 
     @app.get("/images/approval")
     def get_all_in_line():
-        
+
         approve_files = ApproveModel.objects().all()
 
         if len(approve_files) == 0:
@@ -154,7 +163,7 @@ def home_view(app: Flask):
         } for file in approve_files]
 
         return jsonify(result) ,200
-    
+
 
     @app.get('/images/<image_id>')
     def get_show_db(image_id):
@@ -167,7 +176,7 @@ def home_view(app: Flask):
         'Content-Disposition', '' ,filename=f'{file.filename}.{file.extension}')
 
         return  response, 200
-    
+
     @app.get('/images/approval/<image_id>')
     def get_show_db_approval_line(image_id):
 
@@ -183,13 +192,21 @@ def home_view(app: Flask):
 
 
     @app.post('/images/generate-hash-mock')
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def generate_hash_mock():
 
         data_file = request.files
         data_file_name = list(request.files)
 
         image_hash = str(generate_mocked_hash(data_file[data_file_name[0]]))
-    
-        return jsonify({"image_hash" : image_hash}), 200
 
-  
+        response = jsonify({"image_hash" : image_hash})
+
+        response.headers.add("Access-Control-Allow-Origin", "*")
+
+        return  response, 200
+
+    @app.get('/images/info')
+    def teste():
+
+       return jsonify({'msg' : 'teste'}) ,200

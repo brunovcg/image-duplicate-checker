@@ -1,10 +1,16 @@
 import { useState } from "react";
 import InputContainer from "./styles";
 import Button from '../button/index'
+import {useHash} from '../../providers/getHash'
 
 const InputFile = () => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
+
+
+  const {getHash} = useHash()
+
+
 
   const objectToArray = (obj) => {
     let array = [];
@@ -22,14 +28,18 @@ const InputFile = () => {
     setPreview(objectToArray(e.target.files));
   };
 
-  // const teste = () => {
-  //   console.log(files);
-  // };
+
+  const teste = () => {
+    getHash()
+  // console.log("teste")
+  }
+
+
 
   return (
     <InputContainer>
       {/* <button onClick={teste}>teste</button> */}
-      <form>
+      <div>
         <input
           type="file"
           name="imageComparation"
@@ -39,9 +49,10 @@ const InputFile = () => {
         <Button
           setBackground="var(--orange)"
           setColor="white"
+          setClick={teste}
         
         >Enviar</Button>
-      </form>
+      </div>
       <div className="previewContainer">
         {preview &&
           preview.map((file, index) => (
