@@ -6,43 +6,38 @@ const HashContext = createContext([]);
 export const HashProvider = ({ children }) => {
 
 
-    const getHash = (files)=>{
 
-        let imageHash = ""
+    const getHash = async (file)=>{
+
+     
+        let nameHash = ""
 
         const formData = new FormData();
         
+        // for (let i = 0; i < file.length;i++ ){
+        //     // formData.append(file[i].name, file[i]);
+        //     formData.append(file.name, file);
 
-        console.log(files[0].name.split('.')[0])
+        // }
 
 
-        for (let i = 0; i < files.length;i++ ){
-        
-            formData.append(files[i].name, files[i]);
-        }
+        formData.append(file.name, file);
 
         const config = {
             headers: { 'content-type': 'multipart/form-data'
         }
         }
 
-        // api.get('/info').then((res)=>{
-        //     console.log(res.data["msg"])
-        // })
+        await api.post(`/generate-hash-mock`, formData, config).then((res)=>{
 
-        //     api.post('/info/1').then((res)=>{
-        //     console.log(res.data["msg"])
-        // })
-        
-
-        api.post(`/generate-hash-mock`, formData, config).then((res)=>{
-            imageHash = res.data['image_hash']
-
-            console.log(`>>>>>${res.data.image_hash}`)
+        //    nameHash =  file[0].name.split(".")[0] + res.data['image_hash']
+           nameHash =  file.name.split(".")[0] +'.'+ res.data['image_hash']
 
         })
-
-        return imageHash
+        // console.log(nameHash)
+        
+        return nameHash
+       
 
     }
 
@@ -52,7 +47,6 @@ export const HashProvider = ({ children }) => {
         <HashContext.Provider value={{getHash}}>
 
             {children}
-
 
         </HashContext.Provider>
     )

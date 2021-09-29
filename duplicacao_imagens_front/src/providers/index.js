@@ -1,13 +1,11 @@
 import { HashProvider } from "./getHash";
-
+import { SendToDBProvider } from "./sendToDB";
 
 const providers = ({ children }) => {
   return (
-
-
-       <HashProvider>{children}</HashProvider>
-
-
+    <HashProvider>
+      <SendToDBProvider>{children}</SendToDBProvider>
+    </HashProvider>
   );
 };
 

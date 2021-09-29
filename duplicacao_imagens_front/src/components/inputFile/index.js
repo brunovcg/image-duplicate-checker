@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputContainer from "./styles";
 import Button from '../button/index'
 import {useHash} from '../../providers/getHash'
+import {useSendToDB} from '../../providers/sendToDB'
 
 const InputFile = () => {
   const [files, setFiles] = useState();
@@ -9,6 +10,7 @@ const InputFile = () => {
 
 
   const {getHash} = useHash()
+  const {sendAll, uploaded, needApproval} = useSendToDB()
 
 
 
@@ -29,16 +31,17 @@ const InputFile = () => {
   };
 
 
-  // const teste = () => {
-  //   getHash(files)
-  // // console.log("teste")
-  // }
+  const teste = () => {
+   
+ 
+  }
 
 
 
   return (
     <InputContainer>
-      {/* <button onClick={teste}>teste</button> */}
+      <button onClick={()=>console.log(uploaded)}>teste</button>
+      <button onClick={()=>console.log(needApproval)}>teste2</button>
       <div>
         <input
           type="file"
@@ -49,7 +52,7 @@ const InputFile = () => {
         <Button
           setBackground="var(--orange)"
           setColor="white"
-          setClick={()=>getHash(files)}
+          setClick={()=>sendAll(files)}
         
         >Enviar</Button>
       </div>
