@@ -38,9 +38,16 @@ def home_view(app: Flask):
 
             image_id = uuid.uuid4().urn[9:]
 
+            exists:bool
+
             try:
                 check_file = ImageModel.objects().get(hash= image_hash)
-                
+                exists = True
+
+            except Exception:
+                exists = False
+
+            if not exists:    
                 item = ImageModel(
                     imageId = image_id,
                     packageName = data_file_names[index],
@@ -54,9 +61,8 @@ def home_view(app: Flask):
                 uploaded_to_db.append({'filename' : file_extension, 'image_id': image_id})
 
                 item.save() 
-
-            except Exception:
-
+           
+            if exists:
                 item = ApproveModel(
                     imageId = image_id,
                     packageName = data_file_names[index],
@@ -99,6 +105,19 @@ def home_view(app: Flask):
             return jsonify({'msg' : "Item not found"}), 404
 
 
+    @app.delete("/images/approval/<image_Id>")
+    def delete_from_line(image_Id):
+        try:
+            get_file = ApproveModel.objects().get(imageId = image_Id)
+
+            ApproveModel.objects(imageId = image_Id).delete()
+
+        except Exception:
+            return jsonify({'msg' : "Item not found"}), 404
+
+        return jsonify({"msg" : "Image deleted from line"}), 204
+
+
     @app.get("/images")
     def get_all():
 
@@ -111,33 +130,34 @@ def home_view(app: Flask):
             'image': f'{configs["baseURL"]}/images/{file.imageId}'
         } for file in all_files]
                
-
         return jsonify(result) ,200
 
 
     @app.get("/images/approval")
     def get_all_in_line():
-
         
-        all_files = ApproveModel.objects().all()      
+        approve_files = ApproveModel.objects().all()
 
-
-        if len(all_files) == 0:
+        if len(approve_files) == 0:
             return jsonify({'msg' : 'There are no images in line for approval'}), 404
 
         result = [{
             'imageId' : file.imageId,
             'filename' : f'{file.filename}.{file.extension}',
-            'hash': file.hash, 'date': file.creation_date,
-            'image': f'{configs["baseURL"]}/images/{file.imageId}'
-        } for file in all_files]
-  
+            'hash': file.hash,
+            'date': file.creation_date,
+            'image': f'{configs["baseURL"]}/images/approval/{file.imageId}',
+            'images_duplicate' : [{
+                'image': f'{configs["baseURL"]}/images/{duplicate.imageId}',
+                'hash' : duplicate.hash
+                } for duplicate in ImageModel.objects(hash=file.hash).all()]
+        } for file in approve_files]
 
         return jsonify(result) ,200
     
 
     @app.get('/images/<image_id>')
-    def get_one(image_id):
+    def get_show_db(image_id):
 
         file = ImageModel.objects.get(imageId = image_id)
 
@@ -147,6 +167,19 @@ def home_view(app: Flask):
         'Content-Disposition', '' ,filename=f'{file.filename}.{file.extension}')
 
         return  response, 200
+    
+    @app.get('/images/approval/<image_id>')
+    def get_show_db_approval_line(image_id):
+
+        file = ApproveModel.objects.get(imageId = image_id)
+
+        response = make_response(file.image.read())
+        response.headers.set('Content-Type', ' image/jpg')
+        response.headers.set(
+        'Content-Disposition', '' ,filename=f'{file.filename}.{file.extension}')
+
+        return  response, 200
+
 
 
     @app.post('/images/generate-hash-mock')
@@ -157,5 +190,6 @@ def home_view(app: Flask):
 
         image_hash = str(generate_mocked_hash(data_file[data_file_name[0]]))
     
-
         return jsonify({"image_hash" : image_hash}), 200
+
+  
