@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { api } from "../../services/api";
 import { useHash } from "../getHash";
 import {useGetDuplicates} from '../getDuplicates'
+import { toast } from "react-toastify";
 
 const SendToDBContext = createContext([]);
 
@@ -32,10 +33,11 @@ export const SendToDBProvider = ({ children }) => {
       setUploaded(res.data["uploaded_to_db"]);
       setNeedApproval(res.data["need_approval"]);
 
-      console.log(res.data)
+      getDuplicates()
+      toast.info("Arquivos enviados")
     });
 
-    await getDuplicates()
+    // await 
 
   };
 
