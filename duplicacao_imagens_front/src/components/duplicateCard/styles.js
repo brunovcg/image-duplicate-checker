@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
       padding: 10px;
 
       img {
-        border: 1px solid grey;
+        border: 1px solid lightgrey;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         padding:5px;
         background-color: white;
@@ -52,7 +52,7 @@ const StyledContainer = styled.div`
         justify-content: center;
 
         img {
-          border: 1px solid grey;
+          border: 1px solid lightgrey;
           margin-right: 10px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
           padding:5px;

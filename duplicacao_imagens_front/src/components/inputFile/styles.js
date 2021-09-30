@@ -8,7 +8,6 @@ const InputContainer = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: var(--blue);
-  border-bottom: 4px solid var(--dark-blue);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .inputContainer {
@@ -36,7 +35,7 @@ const InputContainer = styled.div`
     width: 100%;
     height: 200px;
     border-top: 4px solid var(--blue);
-    border-bottom: 4px solid var(--blue);
+    border-bottom: 4px solid var(--dark-blue);
 
 
 
