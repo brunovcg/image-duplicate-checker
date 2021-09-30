@@ -5,13 +5,10 @@ const Header = () => {
   return (
     <header className="headerContainer">
       <HeaderStyle>
-   
-          <figure>
-            <img src={logo} alt="logo_hapvida" />
-          </figure>
-          <p>Duplicação de Imagens Hapvida - Front (Piloto)</p>
-     
-        
+        <figure>
+          <img src={logo} alt="logo_hapvida" />
+        </figure>
+        <h1>Duplicação de Imagens Hapvida - Front (Piloto)</h1>
       </HeaderStyle>
     </header>
   );

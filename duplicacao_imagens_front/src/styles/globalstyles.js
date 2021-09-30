@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root {
-     
         --blue: #006EB6;
+        --dark-blue: #0121a3;
         --orange: #EF402D;
-        --grey: #939292; 
-
+        --grey: #939292;
+        --light-grey: #e5e5e5;
     }
 
     * {
@@ -41,8 +41,4 @@ export default createGlobalStyle`
     img{
         width: 20vw;
     }
-
-
-
-
-`
+`;

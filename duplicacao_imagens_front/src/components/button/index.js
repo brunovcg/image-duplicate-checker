@@ -8,7 +8,8 @@ const Button = ({
   setWidth,
   setFont,
   setBackground,
-  setType
+  setType,
+  setMaxWidth,
 }) => {
   return (
     <StyledButton
@@ -19,6 +20,7 @@ const Button = ({
       setFont={setFont}
       setColor={setColor}
       type={setType}
+      setMaxWidth={setMaxWidth}
     >
       {children}
     </StyledButton>

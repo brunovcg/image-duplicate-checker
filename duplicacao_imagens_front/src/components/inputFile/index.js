@@ -2,14 +2,12 @@ import { useState } from "react";
 import InputContainer from "./styles";
 import Button from "../button/index";
 import { useSendToDB } from "../../providers/sendToDB";
-import { useGetDuplicates } from "../../providers/getDuplicates";
 
 const InputFile = () => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
 
-  const { sendAll, uploaded, needApproval } = useSendToDB();
-  const { lineApproval, getDuplicates} = useGetDuplicates();
+  const { sendAll } = useSendToDB();
 
   const objectToArray = (obj) => {
     let array = [];
@@ -27,21 +25,18 @@ const InputFile = () => {
     setPreview(objectToArray(e.target.files));
   };
 
-  const sendAndReset = () =>{
-    
-    sendAll(files)
-    setPreview([])
-  
-  }
+  const sendAndReset = () => {
+    sendAll(files);
+    setPreview([]);
+  };
 
   return (
     <InputContainer>
-   
-
       <div className="inputContainer">
         <input
           type="file"
           name="imageComparation"
+          id="imageComparation"
           multiple
           onChange={handleUploadFiles}
         />

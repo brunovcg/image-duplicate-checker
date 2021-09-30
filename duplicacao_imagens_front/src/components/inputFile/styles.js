@@ -7,10 +7,11 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  border: 4px solid var(--blue);
+  background-color: var(--blue);
+  border-bottom: 4px solid var(--dark-blue);
 
   .inputContainer {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +20,10 @@ const InputContainer = styled.div`
 
     input {
       border: 1px solid var(--blue);
-      height: fit-content;
+      height: 30px;
+      background-color: white;
+      border-radius: 5px;
+      padding: 3px 10px 0 3px;
     }
   }
 
@@ -31,10 +35,9 @@ const InputContainer = styled.div`
     height: 200px;
     border-top: 4px solid var(--blue);
     border-bottom: 4px solid var(--blue);
-    
 
     .previewTitle {
-      color: var(--orange);
+      color: white;
       height: 20%;
       font-weight: bold;
       display: flex;
@@ -46,7 +49,7 @@ const InputContainer = styled.div`
       display: flex;
       height: 80%;
       align-items: center;
-      overflow-x: scroll;
+      overflow-x: auto;
       figure {
         margin: 5px;
         align-items: center;
@@ -55,12 +58,22 @@ const InputContainer = styled.div`
         width: 300px;
 
         img {
-          border: 2px solid black;
+          border: 2px solid white;
           width: 100px;
           height: 60px;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          transition: 0.5s;
+
+          :hover {
+            width: 150px;
+            height: 90px;
+          }
         }
+
         p {
+          margin-top: 5px;
           font-size: 15px;
+          color: white;
         }
       }
     }

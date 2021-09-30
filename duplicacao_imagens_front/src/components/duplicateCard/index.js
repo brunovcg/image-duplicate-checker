@@ -3,6 +3,7 @@ import Button from "../button";
 import { useAcceptDuplicate } from "../../providers/acceptDuplicate";
 import { useRefuseDuplicate } from "../../providers/refuseDuplicate";
 import { useGetDuplicates } from "../../providers/getDuplicates";
+import { formatDate } from "../../utils/formatDate.js";
 
 const DuplicateCard = () => {
   const { lineApproval } = useGetDuplicates();
@@ -17,22 +18,24 @@ const DuplicateCard = () => {
             <figure className="imageApproval">
               <img alt={item.name} src={item.image} />
               <p>{item.filename}</p>
-              <p>{item.date}</p>
+              <p>{formatDate(item.date)}</p>
 
               <div className="buttonBox">
                 <Button
                   setBackground="green"
                   setColor="white"
-                  setWidth="85px"
+                  setWidth="18vw"
                   setClick={() => acceptDuplicate(item.imageId)}
+                  setFont="1rem"
                 >
                   Aceitar
                 </Button>
                 <Button
                   setBackground="red"
                   setColor="white"
-                  setWidth="85px"
+                  setWidth="18vw"
                   setClick={() => refuseDuplicate(item.imageId)}
+                  setFont="1rem"
                 >
                   Descartar
                 </Button>
@@ -44,7 +47,7 @@ const DuplicateCard = () => {
                   <figure key={duplicate.imageId} className="imageDuplicate">
                     <img alt="" src={duplicate.image} />
                     <p>{duplicate.filename}</p>
-                    <p>{duplicate.date}</p>
+                    <p>{formatDate(duplicate.date)}</p>
                   </figure>
                 ))}
             </div>
