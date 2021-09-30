@@ -24,9 +24,14 @@ connect(db=configs['db'], host=configs['host'])
 
 def home_view(app: Flask):
 
-    CORS(app, resources={
+    CORS(app
+        ,
+
+        resources={
         r"/images/*": {"origins": configs['origins']}
-    })
+
+    }
+    )
 
 
     @app.post("/images")
@@ -47,16 +52,13 @@ def home_view(app: Flask):
 
             image_id = uuid.uuid4().urn[9:]
 
-            exists:bool
+            # exists:bool
 
-            try:
-                check_file = ImageModel.objects().get(hash= image_hash)
-                exists = True
+           
 
-            except Exception:
-                exists = False
-
-            if not exists:
+            
+            if len(ImageModel.objects(hash= image_hash)) == 0:
+   
                 item = ImageModel(
                     imageId = image_id,
                     packageName = data_file_names[index],
@@ -67,11 +69,11 @@ def home_view(app: Flask):
                     creation_date = datetime.utcnow()
                     )
 
-                uploaded_to_db.append({'filename' : file_extension, 'image_id': image_id})
+                uploaded_to_db.append({'filename' : file_extension, 'image_id': image_id, "image_hash" : image_hash})
 
                 item.save()
 
-            if exists:
+            if len(ImageModel.objects(hash= image_hash)) > 0:
                 item = ApproveModel(
                     imageId = image_id,
                     packageName = data_file_names[index],
@@ -82,9 +84,47 @@ def home_view(app: Flask):
                     creation_date = datetime.utcnow()
                     )
 
-                need_approval.append({'filename' : file_extension, 'image_id': image_id})
+                need_approval.append({'filename' : file_extension, 'image_id': image_id, "image_hash" : image_hash})
 
                 item.save()
+            
+
+            # try:
+            #     ImageModel.objects(hash= image_hash)
+            #     exists = True
+
+            # except Exception:
+            #     exists = False
+
+            # if not exists:
+            #     item = ImageModel(
+            #         imageId = image_id,
+            #         packageName = data_file_names[index],
+            #         image = data_files[file],
+            #         hash = ImageModel.getHash(file),
+            #         filename = ImageModel.getName(data_dict[data_file_names[index]].filename),
+            #         extension = ImageModel.getExtension(data_dict[data_file_names[index]].filename),
+            #         creation_date = datetime.utcnow()
+            #         )
+
+            #     uploaded_to_db.append({'filename' : file_extension, 'image_id': image_id, "image_hash" : image_hash})
+
+            #     item.save()
+
+            # if exists:
+            #     item = ApproveModel(
+            #         imageId = image_id,
+            #         packageName = data_file_names[index],
+            #         image = data_files[file],
+            #         hash = ImageModel.getHash(file),
+            #         filename = ImageModel.getName(data_dict[data_file_names[index]].filename),
+            #         extension = ImageModel.getExtension(data_dict[data_file_names[index]].filename),
+            #         creation_date = datetime.utcnow()
+            #         )
+
+            #     need_approval.append({'filename' : file_extension, 'image_id': image_id, "image_hash" : image_hash})
+
+            #     item.save()
 
 
         return jsonify({'uploaded_to_db': uploaded_to_db, 'need_approval' : need_approval}), 201
@@ -148,7 +188,7 @@ def home_view(app: Flask):
         approve_files = ApproveModel.objects().all()
 
         if len(approve_files) == 0:
-            return jsonify({'msg' : 'There are no images in line for approval'}), 404
+            return jsonify([]), 200
 
         result = [{
             'imageId' : file.imageId,
@@ -158,7 +198,8 @@ def home_view(app: Flask):
             'image': f'{configs["baseURL"]}/images/approval/{file.imageId}',
             'images_duplicate' : [{
                 'image': f'{configs["baseURL"]}/images/{duplicate.imageId}',
-                'hash' : duplicate.hash
+                'hash' : duplicate.hash,
+                'imageId': duplicate.imageId
                 } for duplicate in ImageModel.objects(hash=file.hash).all()]
         } for file in approve_files]
 
@@ -192,7 +233,7 @@ def home_view(app: Flask):
 
 
     @app.post('/images/generate-hash-mock')
-    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
+    # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def generate_hash_mock():
 
         data_file = request.files
@@ -205,8 +246,3 @@ def home_view(app: Flask):
         response.headers.add("Access-Control-Allow-Origin", "*")
 
         return  response, 200
-
-    @app.get('/images/info')
-    def teste():
-
-       return jsonify({'msg' : 'teste'}) ,200
