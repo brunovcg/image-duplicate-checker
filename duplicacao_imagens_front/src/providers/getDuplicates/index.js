@@ -9,7 +9,7 @@ export const GetDuplicatesProvider = ({ children }) => {
 
     const [lineApproval, setLineApproval] = useState([])
 
-    const getDuplicates = () => {
+    const getDuplicates = async () => {
 
         api.get('/approval').then((res)=>{
 
@@ -24,7 +24,7 @@ export const GetDuplicatesProvider = ({ children }) => {
 
         getDuplicates()
 
-    },[])
+    },[lineApproval])
 
 
 

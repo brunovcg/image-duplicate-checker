@@ -27,12 +27,16 @@ const InputFile = () => {
     setPreview(objectToArray(e.target.files));
   };
 
+  const sendAndReset = () =>{
+    
+    sendAll(files)
+    setPreview([])
+  
+  }
+
   return (
     <InputContainer>
-      <button onClick={() => console.log(uploaded)}>uploaded</button>
-      <button onClick={() => console.log(needApproval)}>need aproval</button>
-      <button onClick={console.log(lineApproval)}>line aproval</button>
-
+   
 
       <div className="inputContainer">
         <input
@@ -44,13 +48,13 @@ const InputFile = () => {
         <Button
           setBackground="var(--orange)"
           setColor="white"
-          setClick={() => sendAll(files)}
+          setClick={sendAndReset}
         >
           Enviar
         </Button>
       </div>
       <div className="previewContainer">
-        <p className="previewTitle">Preview - Images Uploaded</p>
+        <p className="previewTitle">Preview - Imagens para Upload</p>
         <div className="previewImages">
           {preview &&
             preview.map((file, index) => (

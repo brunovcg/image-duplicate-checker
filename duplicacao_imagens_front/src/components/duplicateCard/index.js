@@ -1,45 +1,42 @@
 import StyledContainer from "./styles";
 import Button from "../button";
-
+import { useAcceptDuplicate } from "../../providers/acceptDuplicate";
+import {useRefuseDuplicate} from "../../providers/refuseDuplicate"
 import { useGetDuplicates } from "../../providers/getDuplicates";
 
 const DuplicateCard = () => {
   const { lineApproval } = useGetDuplicates();
+  const { refuseDuplicate } = useRefuseDuplicate();
+  const { acceptDuplicate } = useAcceptDuplicate();
 
   return (
     <StyledContainer>
-     
-        {lineApproval &&
-          lineApproval.map((item, index) => (
-            <div>
-              <figure key={index} className="imageApproval">
-                <img alt={item.name} src={item.image} />
+      {lineApproval &&
+        lineApproval.map((item) => (
+          <div className="cards" key={item.imageId}>
+            <figure className="imageApproval">
+              <img alt={item.name} src={item.image} />
+              <p>{item.filename}</p>
 
-                <div className="buttonBox">
-                  <Button setBackground="green" setColor="white">
-                    Aceitar
-                  </Button>
-                  <Button setBackground="red" setColor="white">
-                    Descartar
-                  </Button>
-                </div>
-              </figure>
-              <div className="duplicateBox">
-
-                 {item && item.images_duplicate.map((duplicate, indexDup)=>(
-
-                    <figure key={indexDup} className="imageDuplicate">
-                        <img alt="" src={duplicate.image}/>
-                    </figure>
-
-
-                 ))}
-
+              <div className="buttonBox">
+                <Button setBackground="green" setColor="white" setWidth="80px" setClick={()=>acceptDuplicate(item.imageId)}>
+                  Aceitar
+                </Button>
+                <Button setBackground="red" setColor="white" setWidth="80px" setClick={()=>refuseDuplicate(item.imageId)}>
+                  Descartar
+                </Button>
               </div>
-              
+            </figure>
+            <div className="duplicateBox">
+              {item &&
+                item.images_duplicate.map((duplicate) => (
+                  <figure key={duplicate.imageId} className="imageDuplicate">
+                    <img alt="" src={duplicate.image} />
+                  </figure>
+                ))}
             </div>
-          ))}
-   
+          </div>
+        ))}
     </StyledContainer>
   );
 };

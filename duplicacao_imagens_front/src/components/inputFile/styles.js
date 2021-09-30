@@ -31,7 +31,7 @@ const InputContainer = styled.div`
     height: 200px;
     border-top: 4px solid var(--blue);
     border-bottom: 4px solid var(--blue);
-    overflow-x: scroll;
+    
 
     .previewTitle {
       color: var(--orange);
@@ -46,6 +46,7 @@ const InputContainer = styled.div`
       display: flex;
       height: 80%;
       align-items: center;
+      overflow-x: scroll;
       figure {
         margin: 5px;
         align-items: center;

@@ -7,7 +7,7 @@ const Duplicates = () => {
 
     return(
         <StyledContainer>
-            <h3>Duplicates in Database</h3>
+            <h3>Duplicatas no Banco de Dados</h3>
             <div className="duplicatesBox">
 
 
