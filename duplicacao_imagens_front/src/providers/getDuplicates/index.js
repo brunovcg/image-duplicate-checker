@@ -15,7 +15,7 @@ export const GetDuplicatesProvider = ({ children }) => {
 
             setLineApproval(res.data)
 
-            
+
         })
 
     }
@@ -24,7 +24,7 @@ export const GetDuplicatesProvider = ({ children }) => {
 
         getDuplicates()
 
-    },[lineApproval])
+    },[])
 
 
 

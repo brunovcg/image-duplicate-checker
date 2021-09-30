@@ -19,6 +19,10 @@ const StyledContainer = styled.div`
         border: 1px solid grey;
       }
 
+      p{
+        font-size: 1.3vw;
+      }
+
       .buttonBox {
         display: flex;
         width: 100%;
@@ -34,10 +38,20 @@ const StyledContainer = styled.div`
       
 
       .imageDuplicate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
         
         img {
           border: 1px solid grey;
           margin-right: 5px;
+        }
+
+        p{
+          text-align: center;
+          font-size: 1.3vw;
         }
       }
     }

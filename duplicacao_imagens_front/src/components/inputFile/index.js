@@ -54,7 +54,7 @@ const InputFile = () => {
         </Button>
       </div>
       <div className="previewContainer">
-        <p className="previewTitle">Preview - Imagens para Upload</p>
+        <h3 className="previewTitle">Preview - Imagens para Upload</h3>
         <div className="previewImages">
           {preview &&
             preview.map((file, index) => (

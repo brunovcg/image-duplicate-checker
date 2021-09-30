@@ -13,7 +13,10 @@ const StyledContainer = styled.div`
         width: 100%;
         text-align: center;
         color: var(--orange);
-        height: 10%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .duplicateBox{
