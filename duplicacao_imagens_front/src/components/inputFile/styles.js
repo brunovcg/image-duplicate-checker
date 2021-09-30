@@ -9,6 +9,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   background-color: var(--blue);
   border-bottom: 4px solid var(--dark-blue);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   .inputContainer {
     margin-top: 20px;
@@ -30,11 +31,14 @@ const InputContainer = styled.div`
   .previewContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 100%;
     height: 200px;
     border-top: 4px solid var(--blue);
     border-bottom: 4px solid var(--blue);
+
+
 
     .previewTitle {
       color: white;
@@ -55,18 +59,20 @@ const InputContainer = styled.div`
         align-items: center;
         display: flex;
         flex-direction: column;
-        width: 300px;
+        width: 180px;
 
         img {
           border: 2px solid white;
-          width: 100px;
-          height: 60px;
+          width: 120px;
+          height: 80px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          padding: 1px;
+          background-color: white;
           transition: 0.5s;
 
           :hover {
-            width: 150px;
-            height: 90px;
+            width: 180px;
+            height: 120px;
           }
         }
 

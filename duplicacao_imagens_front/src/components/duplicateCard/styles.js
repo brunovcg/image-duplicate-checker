@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
     margin: 10px 0;
     padding: 10px 0;
     background-color: var(--light-grey);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     .imageApproval {
       display: flex;
@@ -20,6 +21,8 @@ const StyledContainer = styled.div`
       img {
         border: 1px solid grey;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding:5px;
+        background-color: white;
       }
 
       p {
@@ -52,6 +55,8 @@ const StyledContainer = styled.div`
           border: 1px solid grey;
           margin-right: 10px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          padding:5px;
+          background-color: white;
         }
 
         p {
