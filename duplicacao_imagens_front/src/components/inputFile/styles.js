@@ -36,8 +36,7 @@ const InputContainer = styled.div`
     height: 200px;
     border-top: 4px solid var(--blue);
     border-bottom: 4px solid var(--dark-blue);
-
-
+    overflow-x: auto;
 
     .previewTitle {
       color: white;

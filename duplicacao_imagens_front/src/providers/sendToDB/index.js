@@ -3,11 +3,13 @@ import { api } from "../../services/api";
 import { useHash } from "../getHash";
 import { useGetDuplicates } from "../getDuplicates";
 import { toast } from "react-toastify";
+import {useLoading} from "../loading"
 
 const SendToDBContext = createContext([]);
 
 export const SendToDBProvider = ({ children }) => {
   const { getHash } = useHash();
+  const {setModalIsOpen} = useLoading()
 
   const [uploaded, setUploaded] = useState([]);
   const [needApproval, setNeedApproval] = useState([]);
@@ -22,17 +24,28 @@ export const SendToDBProvider = ({ children }) => {
       formData.append(nameHashed, files[i]);
     }
 
+    setModalIsOpen(true)
+
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
 
     await api.post("", formData, config).then((res) => {
+      
       setUploaded(res.data["uploaded_to_db"]);
-      setNeedApproval(res.data["need_approval"]);
+      setNeedApproval(res.data["need_approval"])
+      
+    }).then(()=>{
+      getDuplicates()
+      toast.info("Arquivos enviados")
+      setModalIsOpen(false)
+    }
+    )
 
-      getDuplicates();
-      toast.info("Arquivos enviados");
-    });
+    
+    
+
+    
   };
 
   return (

@@ -18,6 +18,7 @@ const DuplicateCard = () => {
             <figure className="imageApproval">
               <img alt={item.name} src={item.image} />
               <p>{item.filename}</p>
+              <p className="imageId">ID: {item.imageId}</p>
               <p>{formatDate(item.date)}</p>
 
               <div className="buttonBox">
@@ -47,6 +48,7 @@ const DuplicateCard = () => {
                   <figure key={duplicate.imageId} className="imageDuplicate">
                     <img alt="" src={duplicate.image} />
                     <p>{duplicate.filename}</p>
+                    <p className="imageId">ID: {duplicate.imageId}</p>
                     <p>{formatDate(duplicate.date)}</p>
                   </figure>
                 ))}

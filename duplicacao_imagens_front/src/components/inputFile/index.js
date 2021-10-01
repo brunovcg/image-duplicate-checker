@@ -2,12 +2,19 @@ import { useState } from "react";
 import InputContainer from "./styles";
 import Button from "../button/index";
 import { useSendToDB } from "../../providers/sendToDB";
+import { useLoading } from "../../providers/loading";
+import Modal from "react-modal";
+import customStyles from "../../utils/customStyles";
+import Loading from "../../components/loadingPopUp";
+import { toast } from "react-toastify";
 
 const InputFile = () => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
 
   const { sendAll } = useSendToDB();
+
+  const { modalIsOpen, setModalIsOpen } = useLoading();
 
   const objectToArray = (obj) => {
     let array = [];
@@ -26,12 +33,26 @@ const InputFile = () => {
   };
 
   const sendAndReset = () => {
-    sendAll(files);
-    setPreview([]);
+    if (files) {
+      sendAll(files);
+      setPreview([]);
+    } else {
+      toast.error("Você precisa selecionar pelo menos 1 imagem!");
+    }
   };
 
   return (
     <InputContainer>
+      <Modal
+        isOpen={modalIsOpen}
+        style={customStyles}
+        contentLabel="Example Modal"
+        onRequestClose={() => setModalIsOpen(false)}
+        ariaHideApp={false}
+      >
+        <Loading files={files} />
+      </Modal>
+
       <div className="inputContainer">
         <input
           type="file"
