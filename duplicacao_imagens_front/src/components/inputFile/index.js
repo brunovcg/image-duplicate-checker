@@ -22,7 +22,7 @@ const InputFile = () => {
     let array = [];
 
     Object.values(obj).map((item) =>
-      array.push({ file: URL.createObjectURL(item), name: item.name })
+      array.push({ image: URL.createObjectURL(item), name: item.name })
     );
 
     return array;
@@ -71,36 +71,43 @@ const InputFile = () => {
           Enviar
         </Button>
       </div>
-      <div className="previewContainer">
-        <h3 className="previewTitle">Preview - Imagens para Upload</h3>
-        <div className="previewImages">
-          {preview &&
-            preview.map((file, index) => (
-              <figure key={index}>
-                <img
-                  src={file.file}
-                  alt={file.name}
-                  encType="multipart/form-data"
-                />
-                <p>{file.name}</p>
-              </figure>
-            ))}
-        </div>
-      </div>
-      <div className="duplicateLoad">
-        <h3 className="duplicateTitle">Duplicata Carregadas</h3>
 
-        <div className="duplicateLoadBox">
-          {duplicateCheck &&
-            duplicateCheck.map((file, index) => (
-              <DuplicateLoadImage
-                key={index}
-                source={file.file}
-                alternative={file.name}
-              ></DuplicateLoadImage>
-            ))}
+      {preview.length > 0 && (
+        <div className="previewContainer">
+          <h3 className="previewTitle">Preview - Imagens para Upload</h3>
+          <div className="previewImages">
+            {preview &&
+              preview.map((file, index) => (
+                <figure key={index}>
+                  <img
+                    src={file.image}
+                    alt={file.name}
+                    encType="multipart/form-data"
+                  />
+                  <p>{file.name}</p>
+                </figure>
+              ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {duplicateCheck.length > 0 && (
+        <div className="duplicateLoad">
+          <h3 className="duplicateTitle">Duplicata Carregadas</h3>
+
+          <div className="duplicateLoadBox">
+            {duplicateCheck &&
+              duplicateCheck.map((file, index) => (
+                <DuplicateLoadImage
+                  key={index}
+                  source={file.image}
+                  alternative={file.name}
+                  fileInfo={file}
+                ></DuplicateLoadImage>
+              ))}
+          </div>
+        </div>
+      )}
     </InputContainer>
   );
 };

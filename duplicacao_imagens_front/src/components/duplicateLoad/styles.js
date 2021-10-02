@@ -22,8 +22,12 @@ const StyledContainer = styled.div`
 
     p {
       margin-top: 5px;
-      font-size: 1.2vw;
+      font-size: 0.5rem;
       color: white;
+    }
+
+    .buttonBox{
+      display: flex;
     }
   }
 `;

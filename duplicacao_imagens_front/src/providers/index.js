@@ -4,6 +4,8 @@ import { GetDuplicatesProvider } from "./getDuplicates";
 import { AcceptDuplicateProvider } from "./acceptDuplicate";
 import { RefuseDuplicateProvider } from "./refuseDuplicate";
 import { LoadingProvider } from "./loading";
+import { DuplicateLoadAcceptProvider } from "./dupllicateLoadAccept";
+import { SendOneToDBProvider } from "./sendOneToDB";
 
 const providers = ({ children }) => {
   return (
@@ -11,9 +13,13 @@ const providers = ({ children }) => {
       <GetDuplicatesProvider>
         <HashProvider>
           <SendToDBProvider>
-            <AcceptDuplicateProvider>
-              <RefuseDuplicateProvider>{children}</RefuseDuplicateProvider>
-            </AcceptDuplicateProvider>
+            <SendOneToDBProvider>
+              <DuplicateLoadAcceptProvider>
+                <AcceptDuplicateProvider>
+                  <RefuseDuplicateProvider>{children}</RefuseDuplicateProvider>
+                </AcceptDuplicateProvider>
+              </DuplicateLoadAcceptProvider>
+            </SendOneToDBProvider>
           </SendToDBProvider>
         </HashProvider>
       </GetDuplicatesProvider>

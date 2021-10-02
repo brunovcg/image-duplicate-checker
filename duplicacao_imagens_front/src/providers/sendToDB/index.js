@@ -17,18 +17,16 @@ export const SendToDBProvider = ({ children }) => {
 
   const [duplicateCheck, setDuplicateCheck] = useState([]);
 
-
   const fileToImage = (file) => {
-
-    return { file: URL.createObjectURL(file), name: file.name }
+    return { image: URL.createObjectURL(file), name: file.name, file: file };
   };
 
-
   const sendAll = async (files) => {
+
+
     const formData = new FormData();
 
     let fileIsSent = 0;
-    
 
     let hashStock = {};
 
@@ -46,24 +44,17 @@ export const SendToDBProvider = ({ children }) => {
 
     let hashKeys = Object.keys(hashStock);
 
-    
-
     for (let index = 0; index < hashKeys.length; index++) {
-
-      
-
-      let nameHashed = `${hashStock[hashKeys[index]].filename}.${hashKeys[index]}`
+      let nameHashed = `${hashStock[hashKeys[index]].filename}.${
+        hashKeys[index]
+      }`;
 
       if (hashStock[hashKeys[index]].length === 1) {
         formData.append(nameHashed, hashStock[hashKeys[index]]);
 
         fileIsSent += 1;
-      } 
-      
-      else {
-
+      } else {
         let fileIsDuplicate = 0;
-
 
         let arrayToSend = [];
 
@@ -76,14 +67,16 @@ export const SendToDBProvider = ({ children }) => {
         if (fileIsDuplicate > 0) {
           toast.info(
             `${fileIsDuplicate} ${
-              fileIsDuplicate === 1 ? "arquivo duplicata carregado" : "arquivos duplicatas carregados"
+              fileIsDuplicate === 1
+                ? "arquivo duplicata carregado"
+                : "arquivos duplicatas carregados"
             } `
           );
         }
 
         setDuplicateCheck([...duplicateCheck, ...arrayToSend]);
       }
-    }   
+    }
 
     setModalIsOpen(true);
 
@@ -109,13 +102,12 @@ export const SendToDBProvider = ({ children }) => {
         }
 
         setModalIsOpen(false);
-
       });
   };
 
   return (
     <SendToDBContext.Provider
-      value={{ sendAll, uploaded, needApproval, duplicateCheck }}
+      value={{ sendAll, uploaded, needApproval, duplicateCheck,setDuplicateCheck }}
     >
       {children}
     </SendToDBContext.Provider>

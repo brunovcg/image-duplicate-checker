@@ -12,13 +12,13 @@ const InputContainer = styled.div`
   border-bottom: 4px solid var(--dark-blue);
 
   .inputContainer {
-    margin-top: 20px;
+    margin: 20px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 30%;
     width: 100%;
-   
+  
 
     input {
       border: 1px solid var(--blue);
@@ -37,7 +37,6 @@ const InputContainer = styled.div`
     width: 100%;
     height: fit-content;
     border-top: 4px solid var(--blue);
-    
     
 
     .previewTitle {
@@ -60,7 +59,7 @@ const InputContainer = styled.div`
       width: 100%;
       align-items: center;
       overflow-x: auto;
-      
+
       overflow-x: auto;
       figure {
         margin: 5px;
@@ -81,7 +80,7 @@ const InputContainer = styled.div`
 
         p {
           margin-top: 5px;
-          font-size: 1.2vw;
+          font-size: 0.5rem;
           color: white;
         }
       }
@@ -91,7 +90,7 @@ const InputContainer = styled.div`
   .duplicateLoad {
     width: 100%;
 
-    .duplicateTitle{
+    .duplicateTitle {
       text-align: center;
       margin: 20px 0 10px 0;
       color: white;
