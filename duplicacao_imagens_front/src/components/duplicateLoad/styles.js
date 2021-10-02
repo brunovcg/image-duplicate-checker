@@ -5,7 +5,7 @@ const StyledContainer = styled.div`
   margin: 25px 0;
 
   figure {
-    margin: 5px;
+    margin: 5px 0;
     align-items: center;
     display: flex;
     flex-direction: column;

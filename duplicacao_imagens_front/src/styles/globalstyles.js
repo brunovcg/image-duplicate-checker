@@ -23,7 +23,27 @@ export default createGlobalStyle`
     body {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+   
     }
+
+    div::-webkit-scrollbar {
+    height: 20px;
+    }
+
+   
+    div::-webkit-scrollbar-track {
+        background: #CCCCCC;
+    }
+    div::-webkit-scrollbar-track-piece {
+        background: #CCCCCC;
+    }
+    div::-webkit-scrollbar-thumb {
+        background: var(--yellow);
+        border-radius: 5px;
+    }
+  
+
+
 
     body, input, button, h1, h3, h4, h5, h6, p, textarea, select{
         font-family: 'Roboto', sans-serif;
@@ -48,4 +68,6 @@ export default createGlobalStyle`
     li{
         list-style-type: none
     }
+
+
 `;

@@ -37,7 +37,7 @@ const InputContainer = styled.div`
     height: fit-content;
     border-top: 4px solid var(--blue);
 
-    .previewTitle {
+     .previewTitle {
       margin: 15px 0 15px 0;
       color: white;
       height: 20%;
@@ -49,7 +49,6 @@ const InputContainer = styled.div`
       align-items: center;
       justify-content: center;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -65,9 +64,10 @@ const InputContainer = styled.div`
       align-items: center;
       overflow-x: auto;
 
+   
 
       figure {
-        margin: 25px 0;
+        margin: 25px 10px;
         align-items: center;
         display: flex;
         flex-direction: column;

@@ -22,11 +22,10 @@ export const SendToDBProvider = ({ children }) => {
   };
 
   const sendAll = async (files) => {
-
-
     const formData = new FormData();
 
     let fileIsSent = 0;
+    let fileIsDuplicate = 0;
 
     let hashStock = {};
 
@@ -51,38 +50,30 @@ export const SendToDBProvider = ({ children }) => {
       }`;
 
       if (hashStock[hashKeys[index]].length === 1) {
-
-        
-
         formData.append(nameHashed, hashStock[hashKeys[index]][0]);
 
         fileIsSent += 1;
       } else {
-        let fileIsDuplicate = 0;
-
-        
-
         for (let item = 0; item < hashStock[hashKeys[index]].length; item++) {
-
-          console.log(arrayToSend)
+          console.log(arrayToSend);
 
           arrayToSend.push(fileToImage(hashStock[hashKeys[index]][item]));
 
           fileIsDuplicate += 1;
         }
 
-        if (fileIsDuplicate > 0) {
-          toast.info(
-            `${fileIsDuplicate} ${
-              fileIsDuplicate === 1
-                ? "arquivo duplicata carregado"
-                : "arquivos duplicatas carregados"
-            } `
-          );
-        }
-
         setDuplicateCheck([...duplicateCheck, ...arrayToSend]);
       }
+    }
+
+    if (fileIsDuplicate > 0) {
+      toast.info(
+        `${fileIsDuplicate} ${
+          fileIsDuplicate === 1
+            ? "arquivo duplicata carregado"
+            : "arquivos duplicatas carregados"
+        } `
+      );
     }
 
     setModalIsOpen(true);
@@ -97,7 +88,7 @@ export const SendToDBProvider = ({ children }) => {
         setUploaded(res.data["uploaded_to_db"]);
         setNeedApproval(res.data["need_approval"]);
 
-        console.log("aqui!")
+        console.log("aqui!");
       })
       .then(() => {
         getDuplicates();
@@ -116,7 +107,13 @@ export const SendToDBProvider = ({ children }) => {
 
   return (
     <SendToDBContext.Provider
-      value={{ sendAll, uploaded, needApproval, duplicateCheck,setDuplicateCheck }}
+      value={{
+        sendAll,
+        uploaded,
+        needApproval,
+        duplicateCheck,
+        setDuplicateCheck,
+      }}
     >
       {children}
     </SendToDBContext.Provider>
