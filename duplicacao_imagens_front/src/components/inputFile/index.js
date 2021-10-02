@@ -93,7 +93,7 @@ const InputFile = () => {
 
       {duplicateCheck.length > 0 && (
         <div className="duplicateLoad">
-          <h3 className="duplicateTitle">Duplicata Carregadas</h3>
+          <h3 className="duplicateTitle">Duplicatas Carregadas</h3>
 
           <div className="duplicateLoadBox">
             {duplicateCheck &&

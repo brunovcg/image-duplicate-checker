@@ -3,8 +3,13 @@ import InputFile from "./components/inputFile";
 import Duplicates from "./components/duplicateContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useGetDuplicates } from "./providers/getDuplicates";
 
 const App = () => {
+
+  const { lineApproval } = useGetDuplicates();
+
+
   return (
     <div className="App">
       <ToastContainer
@@ -20,7 +25,8 @@ const App = () => {
       />
       <Header />
       <InputFile />
-      <Duplicates />
+      {lineApproval.length>0 && <Duplicates />}
+      
     </div>
   );
 };

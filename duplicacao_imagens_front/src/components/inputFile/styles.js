@@ -18,7 +18,6 @@ const InputContainer = styled.div`
     justify-content: center;
     height: 30%;
     width: 100%;
-  
 
     input {
       border: 1px solid var(--blue);
@@ -37,7 +36,6 @@ const InputContainer = styled.div`
     width: 100%;
     height: fit-content;
     border-top: 4px solid var(--blue);
-    
 
     .previewTitle {
       margin: 15px 0 15px 0;
@@ -94,7 +92,7 @@ const InputContainer = styled.div`
       text-align: center;
       margin: 20px 0 10px 0;
       color: white;
-      background: var(--yellow);
+      background: var(--orange);
       height: 20%;
       width: 100%;
       padding: 10px 0;
@@ -104,6 +102,7 @@ const InputContainer = styled.div`
       width: 100%;
       display: flex;
       height: fit-content;
+      overflow-x: auto;
     }
   }
 `;

@@ -5,6 +5,8 @@ const HashContext = createContext([]);
 
 export const HashProvider = ({ children }) => {
   const getHash = async (file) => {
+
+ 
     let nameHash = "";
 
     const formData = new FormData();

@@ -43,6 +43,7 @@ export const SendToDBProvider = ({ children }) => {
     }
 
     let hashKeys = Object.keys(hashStock);
+    let arrayToSend = [];
 
     for (let index = 0; index < hashKeys.length; index++) {
       let nameHashed = `${hashStock[hashKeys[index]].filename}.${
@@ -50,16 +51,22 @@ export const SendToDBProvider = ({ children }) => {
       }`;
 
       if (hashStock[hashKeys[index]].length === 1) {
-        formData.append(nameHashed, hashStock[hashKeys[index]]);
+
+        
+
+        formData.append(nameHashed, hashStock[hashKeys[index]][0]);
 
         fileIsSent += 1;
       } else {
         let fileIsDuplicate = 0;
 
-        let arrayToSend = [];
+        
 
         for (let item = 0; item < hashStock[hashKeys[index]].length; item++) {
-          arrayToSend.push(fileToImage(hashStock[hashKeys][item]));
+
+          console.log(arrayToSend)
+
+          arrayToSend.push(fileToImage(hashStock[hashKeys[index]][item]));
 
           fileIsDuplicate += 1;
         }
@@ -89,6 +96,8 @@ export const SendToDBProvider = ({ children }) => {
       .then((res) => {
         setUploaded(res.data["uploaded_to_db"]);
         setNeedApproval(res.data["need_approval"]);
+
+        console.log("aqui!")
       })
       .then(() => {
         getDuplicates();

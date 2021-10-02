@@ -12,14 +12,18 @@ export const SendOneToDBProvider = ({ children }) => {
   const sendOne = async (file) => {
     const formData = new FormData();
 
-    let nameHashed = await getHash(file);
+    
+    let nameHashed = await getHash(file.file);
 
 
-    formData.append(nameHashed, file);
+
+    formData.append(nameHashed, file.file);
 
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
+
+    console.log(formData);
 
     await api
       .post("", formData, config)
