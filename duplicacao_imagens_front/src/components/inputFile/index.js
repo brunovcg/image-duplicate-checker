@@ -8,11 +8,13 @@ import customStyles from "../../utils/customStyles";
 import Loading from "../../components/loadingPopUp";
 import { toast } from "react-toastify";
 
+import DuplicateLoadImage from "../duplicateLoad";
+
 const InputFile = () => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
 
-  const { sendAll } = useSendToDB();
+  const { sendAll, duplicateCheck } = useSendToDB();
 
   const { modalIsOpen, setModalIsOpen } = useLoading();
 
@@ -82,6 +84,20 @@ const InputFile = () => {
                 />
                 <p>{file.name}</p>
               </figure>
+            ))}
+        </div>
+      </div>
+      <div className="duplicateLoad">
+        <h3 className="duplicateTitle">Duplicata Carregadas</h3>
+
+        <div className="duplicateLoadBox">
+          {duplicateCheck &&
+            duplicateCheck.map((file, index) => (
+              <DuplicateLoadImage
+                key={index}
+                source={file.file}
+                alternative={file.name}
+              ></DuplicateLoadImage>
             ))}
         </div>
       </div>

@@ -8,7 +8,7 @@ const Header = () => {
         <figure>
           <img src={logo} alt="logo_hapvida" />
         </figure>
-        <h1>Duplicação de Imagens Hapvida - Front (Piloto)</h1>
+        <h1>Duplicação de Imagens Hapvida - (Piloto)</h1>
       </HeaderStyle>
     </header>
   );
