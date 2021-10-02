@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledContainer = styled.div`
   display: flex;
+  margin: 25px 0;
 
   figure {
     margin: 5px;

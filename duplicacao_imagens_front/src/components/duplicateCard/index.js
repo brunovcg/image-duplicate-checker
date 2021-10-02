@@ -4,6 +4,7 @@ import { useAcceptDuplicate } from "../../providers/acceptDuplicate";
 import { useRefuseDuplicate } from "../../providers/refuseDuplicate";
 import { useGetDuplicates } from "../../providers/getDuplicates";
 import { formatDate } from "../../utils/formatDate.js";
+import { DeleteIcon, CheckIcon } from "@chakra-ui/icons";
 
 const DuplicateCard = () => {
   const { lineApproval } = useGetDuplicates();
@@ -25,20 +26,22 @@ const DuplicateCard = () => {
                 <Button
                   setBackground="green"
                   setColor="white"
-                  setWidth="18vw"
+                  setWidth="4rem"
+                  setHeight="2rem"
                   setClick={() => acceptDuplicate(item.imageId)}
                   setFont="1rem"
                 >
-                  Aceitar
+                  <CheckIcon w={16} h={16} />
                 </Button>
                 <Button
                   setBackground="red"
                   setColor="white"
-                  setWidth="18vw"
+                  setWidth="2rem"
+                  setHeight="2rem"
                   setClick={() => refuseDuplicate(item.imageId)}
                   setFont="1rem"
                 >
-                  Descartar
+                  <DeleteIcon w={15} h={15}/>
                 </Button>
               </div>
             </figure>

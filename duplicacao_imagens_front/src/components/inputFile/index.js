@@ -7,15 +7,14 @@ import Modal from "react-modal";
 import customStyles from "../../utils/customStyles";
 import Loading from "../../components/loadingPopUp";
 import { toast } from "react-toastify";
+import { WarningTwoIcon, ViewIcon } from "@chakra-ui/icons";
 
 import DuplicateLoadImage from "../duplicateLoad";
 
 const InputFile = () => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
-
   const { sendAll, duplicateCheck } = useSendToDB();
-
   const { modalIsOpen, setModalIsOpen } = useLoading();
 
   const objectToArray = (obj) => {
@@ -24,7 +23,6 @@ const InputFile = () => {
     Object.values(obj).map((item) =>
       array.push({ image: URL.createObjectURL(item), name: item.name })
     );
-
     return array;
   };
 
@@ -74,7 +72,10 @@ const InputFile = () => {
 
       {preview.length > 0 && (
         <div className="previewContainer">
-          <h3 className="previewTitle">Preview - Imagens para Upload</h3>
+          <h3 className="previewTitle">
+            <ViewIcon w={35} h={35} />{" "}
+            <span>Preview - Imagens para Upload</span>
+          </h3>
           <div className="previewImages">
             {preview &&
               preview.map((file, index) => (
@@ -93,7 +94,9 @@ const InputFile = () => {
 
       {duplicateCheck.length > 0 && (
         <div className="duplicateLoad">
-          <h3 className="duplicateTitle">Duplicatas Carregadas</h3>
+          <h3 className="duplicateTitle">
+            <WarningTwoIcon w={25} h={25} /> <span>Duplicatas Carregadas</span>
+          </h3>
 
           <div className="duplicateLoadBox">
             {duplicateCheck &&

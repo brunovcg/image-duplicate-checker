@@ -49,6 +49,13 @@ const InputContainer = styled.div`
       align-items: center;
       justify-content: center;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        margin-left: 20px;
+      }
     }
 
     .previewImages {
@@ -58,9 +65,9 @@ const InputContainer = styled.div`
       align-items: center;
       overflow-x: auto;
 
-      overflow-x: auto;
+
       figure {
-        margin: 5px;
+        margin: 25px 0;
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -97,6 +104,12 @@ const InputContainer = styled.div`
       width: 100%;
       padding: 10px 0;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        margin-left: 20px;
+      }
     }
     .duplicateLoadBox {
       width: 100%;

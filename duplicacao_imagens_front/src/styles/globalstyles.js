@@ -6,8 +6,9 @@ export default createGlobalStyle`
         --blue: #006EB6;
         --dark-blue: #005389;
         --light-blue: #3fa8ff;
-        --orange: #EF402D;
+        --orange: #F1471D;
         --grey: #939292;
+        --dark-grey: #6d6a6a;
         --light-grey: #e5e5e5;
         --yellow:#FAB20B;
     }
@@ -42,5 +43,9 @@ export default createGlobalStyle`
 
     img{
         width: 20vw;
+    }
+
+    li{
+        list-style-type: none
     }
 `;
