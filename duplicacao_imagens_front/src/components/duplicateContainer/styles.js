@@ -20,13 +20,13 @@ const StyledContainer = styled.div`
     justify-content: center;
     background-color: var(--blue);
 
-    .icon{
+    .icon {
       border: 1px solid white;
       border-radius: 50%;
       width: 35px;
       height: 35px;
     }
-    span{
+    span {
       margin-left: 10px;
     }
   }

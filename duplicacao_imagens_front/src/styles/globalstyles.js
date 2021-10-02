@@ -42,9 +42,6 @@ export default createGlobalStyle`
         border-radius: 5px;
     }
   
-
-
-
     body, input, button, h1, h3, h4, h5, h6, p, textarea, select{
         font-family: 'Roboto', sans-serif;
     }
@@ -68,6 +65,4 @@ export default createGlobalStyle`
     li{
         list-style-type: none
     }
-
-
 `;

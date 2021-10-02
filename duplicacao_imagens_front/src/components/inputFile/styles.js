@@ -37,7 +37,7 @@ const InputContainer = styled.div`
     height: fit-content;
     border-top: 4px solid var(--blue);
 
-     .previewTitle {
+    .previewTitle {
       margin: 15px 0 15px 0;
       color: white;
       height: 20%;
@@ -63,8 +63,6 @@ const InputContainer = styled.div`
       width: 100%;
       align-items: center;
       overflow-x: auto;
-
-   
 
       figure {
         margin: 25px 10px;

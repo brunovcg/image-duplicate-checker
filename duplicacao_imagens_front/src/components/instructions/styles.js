@@ -7,13 +7,17 @@ const StyledConatiner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   div {
-    border: 1px solid var(--light-blue);
+    border: 3px solid var(--light-blue);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 60%;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 8px 8px 8px;
+
     h3 {
       margin: 20px 0;
       color: var(--orange);

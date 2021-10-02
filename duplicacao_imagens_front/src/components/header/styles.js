@@ -20,6 +20,10 @@ const HeaderStyle = styled.div`
     font-size: 1.8rem;
     color: var(--grey);
   }
+
+  .buttonBox{
+    margin-right: 40px;
+  }
 `;
 
 export default HeaderStyle;

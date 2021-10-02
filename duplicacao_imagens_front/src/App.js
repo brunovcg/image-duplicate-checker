@@ -4,13 +4,12 @@ import Duplicates from "./components/duplicateContainer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGetDuplicates } from "./providers/getDuplicates";
-import Instructions from "./components/instructions"
-
+import Instructions from "./components/instructions";
+import { useState } from "react";
 
 const App = () => {
-
   const { lineApproval } = useGetDuplicates();
-
+  const [instructions, setInstructions] = useState(false);
 
   return (
     <div className="App">
@@ -25,11 +24,10 @@ const App = () => {
         draggable
         pauseOnHover
       />
-      <Header />
-      <InputFile />
-      {lineApproval.length>0 && <Duplicates />}
-      {lineApproval.length===0 && <Instructions />}
-      
+      <Header inst={instructions}/>
+      <InputFile setInst={setInstructions} />
+      {lineApproval.length > 0 && <Duplicates />}
+      {!instructions && lineApproval.length === 0 && <Instructions />}
     </div>
   );
 };

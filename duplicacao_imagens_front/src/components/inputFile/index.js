@@ -11,7 +11,7 @@ import { WarningTwoIcon, ViewIcon } from "@chakra-ui/icons";
 
 import DuplicateLoadImage from "../duplicateLoad";
 
-const InputFile = () => {
+const InputFile = ({ setInst, inst }) => {
   const [files, setFiles] = useState();
   const [preview, setPreview] = useState([]);
   const { sendAll, duplicateCheck } = useSendToDB();
@@ -30,12 +30,14 @@ const InputFile = () => {
     setFiles(e.target.files);
 
     setPreview(objectToArray(e.target.files));
+    setInst(true);
   };
 
   const sendAndReset = () => {
     if (files) {
       sendAll(files);
       setPreview([]);
+      setInst(false);
     } else {
       toast.error("Você precisa selecionar pelo menos 1 imagem!");
     }

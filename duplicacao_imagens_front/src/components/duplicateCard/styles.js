@@ -31,7 +31,7 @@ const StyledContainer = styled.div`
       }
 
       .imageId {
-        font-size: 1.0vw;
+        font-size: 1vw;
       }
 
       .buttonBox {
@@ -64,7 +64,7 @@ const StyledContainer = styled.div`
         }
 
         .imageId {
-          font-size: 1.0vw;
+          font-size: 1vw;
         }
 
         p {

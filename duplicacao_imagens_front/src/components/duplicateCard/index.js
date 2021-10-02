@@ -41,7 +41,7 @@ const DuplicateCard = () => {
                   setClick={() => refuseDuplicate(item.imageId)}
                   setFont="1rem"
                 >
-                  <DeleteIcon w={15} h={15}/>
+                  <DeleteIcon w={15} h={15} />
                 </Button>
               </div>
             </figure>

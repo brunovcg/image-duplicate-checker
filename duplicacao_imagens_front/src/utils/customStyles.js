@@ -2,7 +2,7 @@ const customStyles = {
     content: {
       top: "50%",
       left: "50%",
-      width: "40vw",
+      width: "50vw",
       height: "50vh",
       right: "auto",
       bottom: "auto",

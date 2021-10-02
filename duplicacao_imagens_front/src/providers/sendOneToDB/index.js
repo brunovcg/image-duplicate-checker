@@ -12,10 +12,7 @@ export const SendOneToDBProvider = ({ children }) => {
   const sendOne = async (file) => {
     const formData = new FormData();
 
-    
     let nameHashed = await getHash(file.file);
-
-
 
     formData.append(nameHashed, file.file);
 

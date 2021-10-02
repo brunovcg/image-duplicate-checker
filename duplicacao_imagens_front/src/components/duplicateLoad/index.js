@@ -1,12 +1,10 @@
 import StyledContainer from "./styles";
 import Button from "../button";
-import {useDuplicateLoad} from "../../providers/dupllicateLoadAccept"
-import { DeleteIcon, CheckIcon} from '@chakra-ui/icons'
+import { useDuplicateLoad } from "../../providers/dupllicateLoadAccept";
+import { DeleteIcon, CheckIcon } from "@chakra-ui/icons";
 
 const DuplicateLoadImage = ({ source, alternative, fileInfo }) => {
-
-
-  const {deleteFromArray, accept} = useDuplicateLoad()
+  const { deleteFromArray, accept } = useDuplicateLoad();
 
   return (
     <StyledContainer>
@@ -20,10 +18,9 @@ const DuplicateLoadImage = ({ source, alternative, fileInfo }) => {
             setFont="1.5vw"
             setWidth="4rem"
             setHeight="2rem"
-            setClick={()=>accept(fileInfo)}>
-          
-            <CheckIcon w={16} h={16}/>
-
+            setClick={() => accept(fileInfo)}
+          >
+            <CheckIcon w={16} h={16} />
           </Button>
 
           <Button
@@ -32,9 +29,9 @@ const DuplicateLoadImage = ({ source, alternative, fileInfo }) => {
             setFont="1.5vw"
             setWidth="2rem"
             setHeight="2rem"
-            setClick={()=>deleteFromArray(fileInfo)}
+            setClick={() => deleteFromArray(fileInfo)}
           >
-            <DeleteIcon w={15} h={15}/>
+            <DeleteIcon w={15} h={15} />
           </Button>
         </div>
       </figure>

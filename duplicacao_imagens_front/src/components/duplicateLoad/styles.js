@@ -27,7 +27,7 @@ const StyledContainer = styled.div`
       color: white;
     }
 
-    .buttonBox{
+    .buttonBox {
       display: flex;
     }
   }
