@@ -87,8 +87,6 @@ export const SendToDBProvider = ({ children }) => {
       .then((res) => {
         setUploaded(res.data["uploaded_to_db"]);
         setNeedApproval(res.data["need_approval"]);
-
-        console.log("aqui!");
       })
       .then(() => {
         getDuplicates();
