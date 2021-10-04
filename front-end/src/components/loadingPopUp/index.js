@@ -1,5 +1,5 @@
 import StyledContainer from "./styles";
-import logo from "../../assets/logo.png";
+
 
 
 const Loading = ({ files }) => {
@@ -9,7 +9,7 @@ const Loading = ({ files }) => {
   return (
     <StyledContainer>
       <figure>
-        <img src={logo} alt="logoHapvida" />
+        {/* <img src="" alt="logoHapvida" /> */}
       </figure>
       <div className="animation">
         <div className="lds-ring">

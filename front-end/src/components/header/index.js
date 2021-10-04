@@ -1,4 +1,3 @@
-import logo from "../../assets/logo.png";
 import HeaderStyle from "./styles";
 import Button from "../button";
 import { InfoIcon } from "@chakra-ui/icons";
@@ -26,7 +25,7 @@ const Header = ({ inst }) => {
 
       <HeaderStyle>
         <figure>
-          <img src={logo} alt="logo_hapvida" />
+        {/* <img alt="logo"/> */}
         </figure>
         <h1>Duplicação de Imagens - (Piloto)</h1>
 
