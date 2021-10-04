@@ -1,4 +1,4 @@
 <!DOCTYPE html>
 <html>
-<img src="./Diagrama2.jpg" alt="diagram"/>
+<img src="./Diagrams3.jpg" alt="diagram"/>
 </html>
