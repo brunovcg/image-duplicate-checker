@@ -16,6 +16,13 @@ const DuplicateCard = () => {
       {lineApproval &&
         lineApproval.map((item) => (
           <div className="cards" key={item.imageId}>
+            <div className="titleBox">
+              <div className="imageUploaded">Imagem Carregada</div>
+              <div className="imageDB">Duplicatas no Banco</div>
+            </div>
+
+            <div className="comparationContainer">
+
             <figure className="imageApproval">
               <img alt={item.name} src={item.image} />
               <p>{item.filename}</p>
@@ -45,6 +52,7 @@ const DuplicateCard = () => {
                 </Button>
               </div>
             </figure>
+
             <div className="duplicateBox">
               {item &&
                 item.images_duplicate.map((duplicate) => (
@@ -55,6 +63,7 @@ const DuplicateCard = () => {
                     <p>{formatDate(duplicate.date)}</p>
                   </figure>
                 ))}
+            </div>
             </div>
           </div>
         ))}

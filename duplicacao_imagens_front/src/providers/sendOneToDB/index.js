@@ -20,8 +20,6 @@ export const SendOneToDBProvider = ({ children }) => {
       headers: { "content-type": "multipart/form-data" },
     };
 
-    console.log(formData);
-
     await api
       .post("", formData, config)
 

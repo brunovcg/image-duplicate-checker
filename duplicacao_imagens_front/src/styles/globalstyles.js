@@ -27,7 +27,7 @@ export default createGlobalStyle`
     }
 
     div::-webkit-scrollbar {
-    height: 20px;
+    height: 10px;
     }
 
    
@@ -38,7 +38,7 @@ export default createGlobalStyle`
         background: #CCCCCC;
     }
     div::-webkit-scrollbar-thumb {
-        background: var(--yellow);
+        background: var(--grey);
         border-radius: 5px;
     }
   

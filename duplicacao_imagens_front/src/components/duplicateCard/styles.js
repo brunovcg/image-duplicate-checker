@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledContainer = styled.div`
   .cards {
     display: flex;
+    flex-direction: column;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     margin: 30px 0;
@@ -10,67 +11,94 @@ const StyledContainer = styled.div`
     background-color: var(--light-grey);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-    .imageApproval {
+    .titleBox {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 30%;
-      padding: 10px;
+      margin-bottom: 5px;
 
-      img {
-        border: 1px solid lightgrey;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        padding: 5px;
-        background-color: white;
+      .imageUploaded {
+        width: 30%;
+        text-align: center;
+        color: var(--dark-grey);
+        font-weight: bold;
+        
       }
 
-      p {
-        margin-top: 5px;
-        font-size: 1.3vw;
-      }
-
-      .imageId {
-        font-size: 1vw;
-      }
-
-      .buttonBox {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
+      .imageDB {
+        width: 70%;
+        text-align: center;
+        color: var(--dark-grey);
+        font-weight: bold;
       }
     }
 
-    .duplicateBox {
-      width: 65%;
+    .comparationContainer {
       display: flex;
-      overflow-x: scroll;
-      background-color: white;
-      padding: 10px;
 
-      .imageDuplicate {
+      width: 100%;
+
+      .imageApproval {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 30%;
+        padding: 10px;
 
         img {
           border: 1px solid lightgrey;
-          margin-right: 10px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
           padding: 5px;
           background-color: white;
+        }
+
+        p {
+          margin-top: 5px;
+          font-size: 1.3vw;
         }
 
         .imageId {
           font-size: 1vw;
         }
 
-        p {
-          margin-top: 5px;
-          text-align: center;
-          font-size: 1.3vw;
+        .buttonBox {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .duplicateBox {
+        width: 65%;
+        display: flex;
+        overflow-x: scroll;
+        background-color: white;
+        border: 4px solid white;
+        padding: 10px;
+
+        .imageDuplicate {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            border: 1px solid lightgrey;
+            margin-right: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 5px;
+            background-color: white;
+          }
+
+          .imageId {
+            font-size: 1vw;
+          }
+
+          p {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 1.3vw;
+          }
         }
       }
     }
